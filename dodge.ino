@@ -47,104 +47,72 @@ void setup()
   lcd.createChar(2,c_up);
   lcd.createChar(3,c_down);
   lcd.begin(16, 2);
-  do{
-    lcd.clear();
-    lcd.print("****************");
-    lcd.setCursor(0,1);
-    lcd.print("****************");
-    delay(3000);
-    lcd.clear();
-    delay(1000);
-    lcd.print("<3<3<3| Health");
-    lcd.setCursor(0,1);
-    lcd.print("000000| Score");
-    delay(3000);
-    lcd.clear();
-    delay(1000);
-    lcd.print("YOU:   U |<^>v");
-    lcd.setCursor(0,1);
-    lcd.print("DODGE: * | <-");
-  }while(waitButton());
+  
+  lcd.clear();
+  lcd.print("****************");
+  lcd.setCursor(0,1);
+  lcd.print("****************");
+  delay(3000);
+  lcd.clear();
+  delay(1000);
+  lcd.print("<3<3<3| Health");
+  lcd.setCursor(0,1);
+  lcd.print("000000| Score");
+  delay(3000);
+  lcd.clear();
+  delay(1000);
+  lcd.print("YOU:   U |<^>v");
+  lcd.setCursor(0,1);
+  lcd.print("DODGE: * | <-");
+  delay(3000);
+  
+  
   
 
 }
 
 void loop()
 {
-  int bottom=MINVAL, top=MAXVAL;
-  int trynumber=0;
-  int guess, buttonPressed;
+  int scoreMain = 0;
+  int healthMain = 6;
+  int buttonPressed;
+  int player [2] = {0, 0};
 
-  lcd.clear();
-  lcd.print("Make up a number");
-  lcd.setCursor(0,1);
-  lcd.print("from ");
-  lcd.print(MINVAL,DEC);
-  lcd.print(" to ");
-  lcd.print(MAXVAL,DEC);
-  lcd.print(" ");
-  waitButton();
-  waitReleaseButton();
-  do
-  {
-    lcd.clear();
-    guess=bottom+(top-bottom)/2;
-    trynumber++;
 
-    lcd.print("Is it ");
-    lcd.print(guess,DEC);
-    lcd.print("?");
-    lcd.setCursor(0,1);
-    lcd.write(1);
-    lcd.write(' ');
-    lcd.write(2);
-    lcd.write(' ');
-    lcd.write(3);
-    lcd.write(' ');
-    do
-    {
-      buttonPressed=waitButton();
-    }
-    while(!(buttonPressed==KEYPAD_SELECT || buttonPressed==KEYPAD_UP || buttonPressed==KEYPAD_DOWN));
-    lcd.setCursor(0,1);
-    lcd.write(buttonPressed==KEYPAD_SELECT?1:' ');
-    lcd.write(' ');
-    lcd.write(buttonPressed==KEYPAD_UP?2:' ');
-    lcd.write(' ');
-    lcd.write(buttonPressed==KEYPAD_DOWN?3:' ');
-    delay(100);
-    waitReleaseButton();
-    if (buttonPressed==KEYPAD_UP)
-    {
-      bottom=constrain(guess+1,MINVAL,top);
-    }
-    else if (buttonPressed==KEYPAD_DOWN)
-    {
-      top=constrain(guess-1,bottom,MAXVAL);
-    }
-  }
-  while (buttonPressed!=KEYPAD_SELECT && top!=bottom);
-  lcd.clear();
-  if (top==bottom)
-  {
-    lcd.print("It must be ");
-    guess=top;
-  }
-  else
-  {
-    lcd.print("It is ");
-  }
-  lcd.print(guess,DEC);
-  lcd.print("!");
-  lcd.setCursor(0,1);
-  lcd.print("Tries: ");
-  lcd.print(trynumber,DEC);
-  lcd.print(" ");
-  waitButton();  
-  waitReleaseButton();  
 }
+int drawScreen(int score, int health){
+  char topLine;
+  char bottomLine;
 
-int waitButton()
+  char topBlock;
+  char charScore = score;
+  
+  switch(health){
+    case 6:
+      topBlock = "<3<3<3 |";
+      break;
+    case 5:
+      topBlock = "<3<3<  |";
+      break;
+    case 4:
+      topBlock = "<3<3   |";
+      break;
+    case 3:
+      topBlock = "<3<    |";
+      break;
+    case 2:
+      topBlock = "<3     |";
+      break;
+    case 1:
+      topBlock = "<      |";
+      break;
+    case 0:
+      topBlock = "       |********";
+      break;
+  }
+  return 0;
+}
+void waitButton()
 {
   int buttonPressed; 
   waitReleaseButton;
