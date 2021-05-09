@@ -47,34 +47,26 @@ void setup()
   lcd.createChar(2,c_up);
   lcd.createChar(3,c_down);
   lcd.begin(16, 2);
-  lcd.clear();
-  lcd.print("     Guess");
-  lcd.setCursor(0,1);
-  lcd.print("   The Number");
-  delay(3000);
-  for (k=0;k<3;k++)
-  {
-    lcd.scrollDisplayLeft();
-    delay(200);
-  }
-  for (i=0;i<3;i++)
-  {
-    for (k=0;k<6;k++)
-    {
-      lcd.scrollDisplayRight();
-      delay(200);
-    }
-    for (k=0;k<6;k++)
-    {
-      lcd.scrollDisplayLeft();
-      delay(200);
-    }
-  }
-  for (k=0;k<16;k++)
-  {
-    lcd.scrollDisplayLeft();
-    delay(200);
-  }
+  do{
+    lcd.clear();
+    lcd.print("****************");
+    lcd.setCursor(0,1);
+    lcd.print("****************");
+    delay(3000);
+    lcd.clear();
+    delay(1000);
+    lcd.print("<3<3<3| Health");
+    lcd.setCursor(0,1);
+    lcd.print("000000| Score");
+    delay(3000);
+    lcd.clear();
+    delay(1000);
+    lcd.print("YOU:   U |<^>v");
+    lcd.setCursor(0,1);
+    lcd.print("DODGE: * | <-");
+  }while(waitButton());
+  
+
 }
 
 void loop()
