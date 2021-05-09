@@ -47,7 +47,7 @@ void setup()
   lcd.createChar(2,c_up);
   lcd.createChar(3,c_down);
   lcd.begin(16, 2);
-  
+  /*
   lcd.clear();
   lcd.print("****************");
   lcd.setCursor(0,1);
@@ -61,10 +61,11 @@ void setup()
   delay(3000);
   lcd.clear();
   delay(1000);
-  lcd.print("YOU:   U |<^>v");
+  lcd.print("YOU:  U | <^>v");
   lcd.setCursor(0,1);
-  lcd.print("DODGE: * | <-");
+  lcd.print("DODGE:* | <-");
   delay(3000);
+  */
   
   
   
@@ -73,7 +74,7 @@ void setup()
 
 void loop()
 {
-  int scoreMain = 12345678;
+  int scoreMain = 0;
   int healthMain = 6;
   int buttonPressed;
   int player [2] = {0, 0};
@@ -85,33 +86,37 @@ int drawScreen(int score, int health){
   String bottomLine;
 
   String topBlock;
-  char charScore = score;
+  char *charScore = score;
   String charScor;
-  String bottomBlock;
+  String bottomBlock = charScore;
+
+  charScor = charScore;
   
   switch(health){
     case 6:
-      topBlock = "<3<3<3 |";
+      topBlock = "<3<3<3|";
       break;
     case 5:
-      topBlock = "<3<3<  |";
+      topBlock = "<3<3< |";
       break;
     case 4:
-      topBlock = "<3<3   |";
+      topBlock = "<3<3  |";
       break;
     case 3:
-      topBlock = "<3<    |";
+      topBlock = "<3<   |";
       break;
     case 2:
-      topBlock = "<3     |";
+      topBlock = "<3    |";
       break;
     case 1:
-      topBlock = "<      |";
+      topBlock = "<     |";
       break;
     case 0:
-      topBlock = "       |";
+      topBlock = "      |";
       break;
   }
+  
+  /*
   if(charScor.length() < 7){
     int filler = 7 - (charScor.length());
     String fillText;
@@ -123,6 +128,7 @@ int drawScreen(int score, int health){
   else{
     bottomBlock = "OVRLOAD|";
   }
+  */
   topLine = topBlock; //Add enemy and player position here
   bottomLine = bottomBlock; //"
   lcd.clear();
