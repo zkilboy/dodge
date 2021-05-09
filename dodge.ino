@@ -73,19 +73,21 @@ void setup()
 
 void loop()
 {
-  int scoreMain = 0;
+  int scoreMain = 12345678;
   int healthMain = 6;
   int buttonPressed;
   int player [2] = {0, 0};
 
-
+  drawScreen(scoreMain, healthMain);
 }
 int drawScreen(int score, int health){
-  char topLine;
-  char bottomLine;
+  String topLine;
+  String bottomLine;
 
-  char topBlock;
+  String topBlock;
   char charScore = score;
+  String charScor;
+  String bottomBlock;
   
   switch(health){
     case 6:
@@ -107,9 +109,27 @@ int drawScreen(int score, int health){
       topBlock = "<      |";
       break;
     case 0:
-      topBlock = "       |********";
+      topBlock = "       |";
       break;
   }
+  if(charScor.length() < 7){
+    int filler = 7 - (charScor.length());
+    String fillText;
+    for(int a; a < filler; a++){
+      fillText += "0";
+    }
+    bottomBlock = fillText + charScor + "|";
+  }
+  else{
+    bottomBlock = "OVRLOAD|";
+  }
+  topLine = topBlock; //Add enemy and player position here
+  bottomLine = bottomBlock; //"
+  lcd.clear();
+  lcd.print(topLine);
+  lcd.setCursor(0,1);
+  lcd.print(bottomLine);
+  delay(1000);
   return 0;
 }
 void waitButton()
