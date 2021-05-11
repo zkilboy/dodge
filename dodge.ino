@@ -65,6 +65,7 @@ void setup()
   lcd.setCursor(0,1);
   lcd.print("DODGE:* | <-");
   delay(3000);
+  I am extremely frustrated with this!!
   */
   
   
@@ -74,7 +75,7 @@ void setup()
 
 void loop()
 {
-  int scoreMain = 0;
+  int scoreMain = 1;
   int healthMain = 6;
   int buttonPressed;
   int player [2] = {0, 0};
@@ -130,7 +131,7 @@ int drawScreen(int score, int health){
   }
   */
   topLine = topBlock; //Add enemy and player position here
-  bottomLine = bottomBlock; //"
+  bottomLine = bottomBlock; //Add enemy and player position here too
   lcd.clear();
   lcd.print(topLine);
   lcd.setCursor(0,1);
